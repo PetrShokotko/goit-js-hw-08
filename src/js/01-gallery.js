@@ -5,27 +5,51 @@ import { galleryItems } from './gallery-items';
 console.log(galleryItems);
 
 import SimpleLightbox from 'simplelightbox';
-
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const gallery = document.querySelector('.gallery');
-const items = [];
+const galleryItemsHTML = galleryItems.map(element => `
+  <a href="${element.original}" class="gallery__link">
+    <img src="${element.preview}" class="gallery__image" title="${element.description}" alt="${element.description}" data-alt="${element.description}">
+  </a>
+`).join('');
 
-galleryItems.forEach(element => {
-  const galleryLink = document.createElement('a');
-  galleryLink.className = 'gallery__link';
-  galleryLink.href = element.original;
-  const galleryImage = document.createElement('img');
-  galleryImage.className = 'gallery__image';
-  galleryImage.src = element.preview;
-  galleryImage.setAttribute('title', element.description);
-  galleryImage.alt = element.description;
-
-  galleryLink.append(galleryImage);
-  items.push(galleryLink);
-});
-gallery.append(...items);
+gallery.innerHTML = galleryItemsHTML;
 
 new SimpleLightbox('.gallery a', {
   captionDelay: 250,
 });
+
+
+
+
+
+
+
+
+
+// import SimpleLightbox from 'simplelightbox';
+
+// import 'simplelightbox/dist/simple-lightbox.min.css';
+
+// const gallery = document.querySelector('.gallery');
+// const items = [];
+
+// galleryItems.forEach(element => {
+//   const galleryLink = document.createElement('a');
+//   galleryLink.className = 'gallery__link';
+//   galleryLink.href = element.original;
+//   const galleryImage = document.createElement('img');
+//   galleryImage.className = 'gallery__image';
+//   galleryImage.src = element.preview;
+//   galleryImage.setAttribute('title', element.description);
+//   galleryImage.alt = element.description;
+
+//   galleryLink.append(galleryImage);
+//   items.push(galleryLink);
+// });
+// gallery.append(...items);
+
+// new SimpleLightbox('.gallery a', {
+//   captionDelay: 250,
+// });
